@@ -1,0 +1,19 @@
+package challenge.usecases;
+
+import challenge.entities.Account;
+import challenge.entities.Transaction;
+import challenge.entities.Violation;
+import org.springframework.stereotype.Service;
+
+@Service
+public class SufficientLimitValidation implements BankValidation {
+
+    @Override
+    public boolean validate(Account account, Transaction transaction) throws Violation {
+        if (account.getAvailableLimit() < transaction.getAmount()) {
+            throw new Violation("insufficient-limit", account);
+        }
+
+        return true;
+    }
+}
