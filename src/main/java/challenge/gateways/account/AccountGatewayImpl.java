@@ -1,4 +1,4 @@
-package challenge.gateways;
+package challenge.gateways.account;
 
 import challenge.entities.Account;
 import challenge.entities.Violation;

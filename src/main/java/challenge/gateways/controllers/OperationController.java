@@ -1,4 +1,4 @@
-package challenge.controllers;
+package challenge.gateways.controllers;
 
 import challenge.entities.Account;
 import challenge.entities.Operation;
@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-@RestController
+//@RestController
 public class OperationController {
 
     private ProcessAccount processAccount;
@@ -33,7 +33,7 @@ public class OperationController {
             }
         } catch (Violation violation) {
             operation.setAccount(violation.getAccount());
-            operation.addViolation(violation.getValue());
+            operation.addViolations(violation.getValues());
         }
 
         return operation;

@@ -33,16 +33,7 @@ public class Operation {
         return violations;
     }
 
-    public void addViolation(String violation) {
-        this.violations.add(violation);
-    }
-
-    @Override
-    public String toString() {
-        return "Operation{" +
-                "account=" + account +
-                ", transaction=" + transaction +
-                ", violations=" + violations +
-                '}';
+    public void addViolations(List<String> violation) {
+        this.violations.addAll(violation);
     }
 }

@@ -6,6 +6,7 @@ import challenge.entities.Violation;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Service
@@ -22,11 +23,20 @@ public class ProcessTransaction {
 
     public Account execute(Transaction transaction) throws Violation {
         Account account = accountGateway.getAccount();
-        for (BankValidation validation : validations) {
-            validation.validate(account, transaction);
-        }
+        List<String> violations = new ArrayList<>();
+        validations.forEach(validation -> {
+            try {
+                validation.validate(account, transaction);
+            } catch (Violation violation) {
+                violations.addAll(violation.getValues());
+            }
+        });
 
-        account.acceptTransaction(transaction);
+        if (violations.isEmpty()) {
+            account.acceptTransaction(transaction);
+        } else {
+            throw new Violation(violations, account);
+        }
         return accountGateway.saveAccount(account);
     }
 

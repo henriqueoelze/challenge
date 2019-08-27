@@ -1,16 +1,24 @@
 package challenge.entities;
 
+import java.util.Collections;
+import java.util.List;
+
 public class Violation extends Exception {
-    private String value;
+    private List<String> values;
     private Account account;
 
     public Violation(String value, Account account) {
-        this.value = value;
+        this.values = Collections.singletonList(value);
         this.account = account;
     }
 
-    public String getValue() {
-        return value;
+    public Violation(List<String> value, Account account) {
+        this.values = value;
+        this.account = account;
+    }
+
+    public List<String> getValues() {
+        return values;
     }
 
     public Account getAccount() {
