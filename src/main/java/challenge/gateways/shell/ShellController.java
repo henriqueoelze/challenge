@@ -34,22 +34,35 @@ public class ShellController {
         this.processTransaction = processTransaction;
     }
 
-    @ShellMethod(value="Authorize a specific Operation", key="authorize")
-    public void authorize(Operation operation) throws IOException {
-        authorizeOperation(operation);
+    /**
+     * Authorize one operation.
+     *
+     * @param operation operation in JSON format.
+     * @return the output of the operation in JSON format.
+     * @throws IOException
+     */
+    @ShellMethod(value = "Authorize a specific Operation", key = "authorize")
+    public String authorize(Operation operation) throws IOException {
+        return authorizeOperation(operation);
     }
 
-    @ShellMethod(value="Authorize all operation inside the file", key="authorize-file")
+    /**
+     * Authorize a list of operations inside a given file.
+     *
+     * @param path absolute path to the file.
+     * @throws IOException
+     */
+    @ShellMethod(value = "Authorize all operation inside the file", key = "authorize-file")
     public void authorizeFile(String path) throws IOException {
         File file = ResourceUtils.getFile(path);
         BufferedReader b = new BufferedReader(new FileReader(file));
         String readLine = "";
         while ((readLine = b.readLine()) != null) {
-            authorizeOperation(objectMapper.readValue(readLine, Operation.class));
+            System.out.println(authorizeOperation(objectMapper.readValue(readLine, Operation.class)));
         }
     }
 
-    private void authorizeOperation(Operation requestOperation) throws IOException {
+    private String authorizeOperation(Operation requestOperation) throws IOException {
         Operation operation = new Operation();
         try {
             if (requestOperation.getAccount() != null) {
@@ -62,7 +75,7 @@ public class ShellController {
             operation.addViolations(violation.getValues());
         }
 
-        System.out.println(objectMapper.writeValueAsString(operation));
+        return objectMapper.writeValueAsString(operation);
     }
 
     private Account processAccountMessage(Account account) throws Violation {

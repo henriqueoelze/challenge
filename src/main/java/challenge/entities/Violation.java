@@ -12,8 +12,8 @@ public class Violation extends Exception {
         this.account = account;
     }
 
-    public Violation(List<String> value, Account account) {
-        this.values = value;
+    public Violation(List<String> values, Account account) {
+        this.values = values;
         this.account = account;
     }
 

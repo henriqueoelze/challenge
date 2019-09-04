@@ -1,9 +1,12 @@
-package challenge.usecases;
+package challenge.usecases.validations;
 
 import challenge.entities.Account;
 import challenge.entities.Transaction;
 import challenge.entities.Violation;
+import challenge.usecases.BankValidation;
 import org.springframework.stereotype.Service;
+
+import java.time.LocalDateTime;
 
 @Service
 public class DoubleTransactionValidation implements BankValidation {
@@ -12,6 +15,7 @@ public class DoubleTransactionValidation implements BankValidation {
     public boolean validate(Account account, Transaction transaction) throws Violation {
         long count = account.getTransactionHistory()
                 .stream()
+                .filter(t -> LocalDateTime.now().minusMinutes(2).isBefore(t.getTime()))
                 .filter(t -> t.getMerchant().equals(transaction.getMerchant()) && t.getAmount() == transaction.getAmount())
                 .count();
 

@@ -1,8 +1,9 @@
-package challenge.usecases;
+package challenge.usecases.validations;
 
 import challenge.entities.Account;
 import challenge.entities.Transaction;
 import challenge.entities.Violation;
+import challenge.usecases.BankValidation;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDateTime;
