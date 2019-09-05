@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class HighFrequencyValidation implements BankValidation {
 
     @Override
-    public boolean validate(Account account, Transaction transaction) throws Violation {
+    public void validate(Account account, Transaction transaction) throws Violation {
         long count = account.getTransactionHistory()
                 .stream()
                 .filter(t -> LocalDateTime.now().minusMinutes(2).isBefore(t.getTime()))
@@ -21,7 +21,5 @@ public class HighFrequencyValidation implements BankValidation {
         if (count >= 3) {
             throw new Violation("high-frequency-small-interval", account);
         }
-
-        return true;
     }
 }

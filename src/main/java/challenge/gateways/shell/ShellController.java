@@ -56,7 +56,7 @@ public class ShellController {
     public void authorizeFile(String path) throws IOException {
         File file = ResourceUtils.getFile(path);
         BufferedReader b = new BufferedReader(new FileReader(file));
-        String readLine = "";
+        String readLine;
         while ((readLine = b.readLine()) != null) {
             System.out.println(authorizeOperation(objectMapper.readValue(readLine, Operation.class)));
         }

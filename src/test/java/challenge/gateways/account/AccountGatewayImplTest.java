@@ -42,7 +42,7 @@ public class AccountGatewayImplTest {
     }
 
     @Test
-    public void createAccountShouldReturnViolationIfAccountAlreadyExists() throws Violation {
+    public void createAccountShouldReturnViolationIfAccountAlreadyExists() {
         Account account = new Account();
         gateway.saveAccount(account);
 

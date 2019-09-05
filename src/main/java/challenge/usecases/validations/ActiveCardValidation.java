@@ -10,11 +10,9 @@ import org.springframework.stereotype.Service;
 public class ActiveCardValidation implements BankValidation {
 
     @Override
-    public boolean validate(Account account, Transaction transaction) throws Violation {
+    public void validate(Account account, Transaction transaction) throws Violation {
         if (!account.isActiveCard()) {
             throw new Violation("card-blocked", account);
         }
-
-        return true;
     }
 }

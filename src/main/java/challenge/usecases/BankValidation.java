@@ -8,5 +8,5 @@ import org.springframework.stereotype.Service;
 @Service
 public interface BankValidation {
 
-    boolean validate(Account account, Transaction transaction) throws Violation;
+    void validate(Account account, Transaction transaction) throws Violation;
 }

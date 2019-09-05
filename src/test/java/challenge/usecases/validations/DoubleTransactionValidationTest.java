@@ -28,11 +28,10 @@ public class DoubleTransactionValidationTest {
     }
 
     @Test
-    public void shouldNotReturnErrorWhenEmptyHisttory() throws Violation {
+    public void shouldNotReturnErrorWhenEmptyHistory() throws Violation {
         Account account = new Account();
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
@@ -42,8 +41,7 @@ public class DoubleTransactionValidationTest {
                 getTransaction(100.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));
 
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
@@ -55,8 +53,7 @@ public class DoubleTransactionValidationTest {
                 getTransaction(100.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));
 
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
@@ -68,8 +65,7 @@ public class DoubleTransactionValidationTest {
                 getTransaction(150.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));
 
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
@@ -81,12 +77,11 @@ public class DoubleTransactionValidationTest {
                 getTransaction(100.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));
 
         Transaction newTransaction = getTransaction(100.0, "Merchant 2", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
-    public void shouldReturnErrorWhenTwoSimilarTransactionsWithLessThenTwoMinutes() throws Violation {
+    public void shouldReturnErrorWhenTwoSimilarTransactionsWithLessThenTwoMinutes() {
         Account account = new Account();
         account.acceptTransaction(
                 getTransaction(100.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));

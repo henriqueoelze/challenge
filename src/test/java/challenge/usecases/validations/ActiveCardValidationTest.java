@@ -2,7 +2,6 @@ package challenge.usecases.validations;
 
 import challenge.entities.Account;
 import challenge.entities.Violation;
-import com.google.common.truth.Truth;
 import org.junit.Before;
 import org.junit.Rule;
 import org.junit.Test;
@@ -31,12 +30,11 @@ public class ActiveCardValidationTest {
         Account account = new Account();
         account.setActiveCard(true);
 
-        boolean validate = validation.validate(account, null);
-        assertThat(validate).isTrue();
+        validation.validate(account, null);
     }
 
     @Test
-    public void shouldThrowErrorWhenCardIsBlocked() throws Violation {
+    public void shouldThrowErrorWhenCardIsBlocked() {
         Account account = new Account();
         account.setActiveCard(false);
 

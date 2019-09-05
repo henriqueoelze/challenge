@@ -12,7 +12,7 @@ import java.time.LocalDateTime;
 public class DoubleTransactionValidation implements BankValidation {
 
     @Override
-    public boolean validate(Account account, Transaction transaction) throws Violation {
+    public void validate(Account account, Transaction transaction) throws Violation {
         long count = account.getTransactionHistory()
                 .stream()
                 .filter(t -> LocalDateTime.now().minusMinutes(2).isBefore(t.getTime()))
@@ -22,7 +22,5 @@ public class DoubleTransactionValidation implements BankValidation {
         if (count >= 2) {
             throw new Violation("doubled-transaction", account);
         }
-
-        return true;
     }
 }

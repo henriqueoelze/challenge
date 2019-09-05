@@ -28,11 +28,10 @@ public class HighFrequencyValidationTest {
     }
 
     @Test
-    public void shouldNotReturnErrorWhenEmptyHisttory() throws Violation {
+    public void shouldNotReturnErrorWhenEmptyHistory() throws Violation {
         Account account = new Account();
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
@@ -42,8 +41,7 @@ public class HighFrequencyValidationTest {
                 getTransaction(100.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));
 
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
@@ -55,12 +53,11 @@ public class HighFrequencyValidationTest {
                 getTransaction(10.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));
 
         Transaction newTransaction = getTransaction(100.0, "Merchant 1", LocalDateTime.now());
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
-    public void shouldReturnErrorWhenThreeTransactionsWithLessThenTwoMinutes() throws Violation {
+    public void shouldReturnErrorWhenThreeTransactionsWithLessThenTwoMinutes() {
         Account account = new Account();
         account.acceptTransaction(
                 getTransaction(10.0, "Merchant 1", LocalDateTime.now().minusMinutes(1L)));

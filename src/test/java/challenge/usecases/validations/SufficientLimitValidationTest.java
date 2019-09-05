@@ -34,12 +34,11 @@ public class SufficientLimitValidationTest {
         account.setAvailableLimit(110.0);
         Transaction newTransaction = getTransaction(100.0, "Merchant 2", LocalDateTime.now());
 
-        boolean validate = validation.validate(account, newTransaction);
-        assertThat(validate).isTrue();
+        validation.validate(account, newTransaction);
     }
 
     @Test
-    public void shouldThrowErrorWhenLimitIsLowerThenTheTransaction() throws Violation {
+    public void shouldThrowErrorWhenLimitIsLowerThenTheTransaction() {
         Account account = new Account();
         account.setAvailableLimit(99.0);
         Transaction newTransaction = getTransaction(100.0, "Merchant 2", LocalDateTime.now());
