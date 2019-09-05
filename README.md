@@ -3,7 +3,7 @@
 
 This zip file contains all code and instructions related to the giving challenge.
 
-The only pre-requisite for the machine is to have JRE on it in because the solution was build using Java 8. Link if necessary: https://github.com/spring-projects/spring-shell/tree/master/spring-shell-test-samples/src/test/java/com/example/test
+The only pre-requisite for the machine is to have JRE on it in because the solution was build using Java 8. Link if necessary: https://www.java.com/pt_BR/download/
 
 In order to run the application, please execute the following command inside the folder with the zip content:
 
