@@ -1,4 +1,4 @@
-# Nu Bank Challenge
+# Challenge
 ### By Henrique Oelze
 
 This zip file contains all code and instructions related to the giving challenge.
