@@ -36,14 +36,14 @@ public class ActiveCardValidationTest {
     @Test
     public void shouldThrowErrorWhenCardIsBlocked() {
         Account account = new Account();
-        account.setActiveCard(false);
+        account.setActiveCard(true);
 
         try {
             validation.validate(account, null);
             assert_().withMessage("Should throw a violation").fail();
         } catch (Violation violation) {
             assertThat(violation.getValues()).hasSize(1);
-            assertThat(violation.getValues().get(1)).isEqualTo("card-blocked");
+            assertThat(violation.getValues().get(0)).isEqualTo("card-blocked");
             assertThat(violation.getAccount()).isEqualTo(account);
         }
     }
