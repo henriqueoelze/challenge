@@ -28,7 +28,7 @@ public class ActiveCardValidationTest {
     @Test
     public void shouldNotReturnErrorWhenCardIsNotBlocked() throws Violation {
         Account account = new Account();
-        account.setActiveCard(true);
+        account.setActiveCard(false);
 
         validation.validate(account, null);
     }
