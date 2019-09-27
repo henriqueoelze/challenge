@@ -28,15 +28,15 @@ public class ActiveCardValidationTest {
     @Test
     public void shouldNotReturnErrorWhenCardIsNotBlocked() throws Violation {
         Account account = new Account();
-        account.setActiveCard(false);
+        account.setActiveCard(true);
 
         validation.validate(account, null);
     }
     
     @Test
-    public void potatoTest() throws Violation {
+    public void potato2Test() throws Violation {
         Account account = new Account();
-        account.setActiveCard(true);
+        account.setActiveCard(false);
 
         validation.validate(account, null);
     }
