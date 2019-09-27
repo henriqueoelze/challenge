@@ -32,6 +32,14 @@ public class ActiveCardValidationTest {
 
         validation.validate(account, null);
     }
+    
+    @Test
+    public void potatoTest() throws Violation {
+        Account account = new Account();
+        account.setActiveCard(true);
+
+        validation.validate(account, null);
+    }
 
     @Test
     public void shouldThrowErrorWhenCardIsBlocked() {
